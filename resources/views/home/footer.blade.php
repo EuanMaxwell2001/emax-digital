@@ -1,9 +1,8 @@
 <footer class="overflow-clip bg-ink">
     <div class="wrap">
         <div class="flex flex-wrap justify-between gap-4 border-t border-line pt-7 font-label text-xs font-medium tracking-[0.2em] text-muted">
-            <span>{{ config('site.owner') }}, trading as {{ config('app.name') }}</span>
-            <span x-data="clock">{{ config('site.location') }} · <span x-text="time">{{ now('Europe/London')->format('H:i') }}</span></span>
-            <span>© {{ date('Y') }}</span>
+            <span>© {{ date('Y') }} {{ config('app.name') }}</span>
+            <span>Web design · Branding · Hosting</span>
         </div>
     </div>
 

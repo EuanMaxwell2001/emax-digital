@@ -1,6 +1,6 @@
 @props(['title' => null, 'description' => config('site.description')])
 
-@php($pageTitle = $title ? "{$title} — " . config('app.name') : config('app.name') . ' — Web design & development, Glasgow')
+@php($pageTitle = $title ? "{$title} — " . config('app.name') : config('app.name') . ' — Web design, branding & hosting')
 
 <!DOCTYPE html>
 <html lang="en-GB">

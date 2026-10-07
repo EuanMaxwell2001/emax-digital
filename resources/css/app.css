@@ -113,6 +113,37 @@ body::after {
 .js .giant-in { transform: translateY(40%) scaleY(.4); transition: transform 1.2s var(--ease-rise); }
 .js .giant-in.is-in { transform: none; }
 
+/* ---------- Mobile menu ----------
+ * Two slanted panels (on the logo's slash angle) wipe in from the right, ion leading ink.
+ * Closing carries them on out to the left; .is-closing holds that state until the
+ * panels are offscreen, then they snap back to the right with transitions off.
+ */
+.menu { visibility: hidden; pointer-events: none; }
+.menu.is-open { visibility: visible; pointer-events: auto; }
+.menu.is-closing { visibility: visible; }
+
+.menu-layer {
+    position: absolute;
+    inset: 0 -45%;
+    transform: translateX(110%) skewX(-14deg);
+    transition: transform .8s var(--ease-rise);
+    transition-delay: calc((1 - var(--layer)) * .1s); /* closing: ink leaves first */
+}
+.is-open .menu-layer { transform: translateX(0) skewX(-14deg); transition-delay: calc(var(--layer) * .1s); }
+.is-closing .menu-layer { transform: translateX(-110%) skewX(-14deg); }
+
+.menu-item { transform: translateY(110%) skewY(6deg); transition: transform .8s var(--ease-rise); }
+.is-open .menu-item { transform: none; transition-delay: calc(.32s + var(--i) * .06s); }
+.is-closing .menu-item { transform: translateY(-110%); transition-duration: .35s; }
+
+.menu-fade { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .8s var(--ease-rise); }
+.is-open .menu-fade { opacity: 1; transform: none; transition-delay: .6s; }
+.is-closing .menu-fade { transition-duration: .2s; }
+
+.menu:not(.is-open):not(.is-closing) :is(.menu-layer, .menu-item, .menu-fade) { transition: none; }
+
+html.menu-open { overflow: hidden; }
+
 /* Nav underline */
 .nav-link { position: relative; }
 .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--color-ion); transform: scaleX(0); transform-origin: left; transition: transform .35s; }

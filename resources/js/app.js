@@ -66,14 +66,46 @@ Alpine.data('servicePreview', () => ({
     },
 }));
 
-// Live Glasgow time.
-Alpine.data('clock', () => ({
-    time: '',
+// Full-screen mobile menu: open/close state, scroll lock, focus handling.
+// `closing` keeps the panels visible while they wipe out (see .menu in app.css).
+Alpine.data('mobileMenu', () => ({
+    open: false,
+    closing: false,
+    scrolled: false,
+    returnTo: null,
+    timer: null,
     init() {
-        const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' });
-        const tick = () => { this.time = fmt.format(new Date()); };
-        tick();
-        setInterval(tick, 15000);
+        const onScroll = () => { this.scrolled = window.scrollY > 400; };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        this.$watch('open', (isOpen) => {
+            document.documentElement.classList.toggle('menu-open', isOpen);
+            isOpen ? window.lenis?.stop() : window.lenis?.start();
+        });
+
+        window.matchMedia('(min-width: 48rem)').addEventListener('change', (e) => e.matches && this.close());
+    },
+    show() {
+        clearTimeout(this.timer);
+        this.closing = false;
+        this.returnTo = document.activeElement;
+        this.open = true;
+        this.$nextTick(() => this.$refs.close.focus({ preventScroll: true }));
+    },
+    close() {
+        if (!this.open) return;
+        this.open = false;
+        this.closing = true;
+        this.timer = setTimeout(() => { this.closing = false; }, reducedMotion ? 0 : 950);
+        this.returnTo?.focus?.({ preventScroll: true });
+    },
+    trap(e) {
+        const items = [...this.$refs.menu.querySelectorAll('a[href], button')];
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     },
 }));
 

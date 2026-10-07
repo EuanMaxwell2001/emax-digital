@@ -12,17 +12,15 @@
 
 return [
 
-    'owner' => 'Euan Maxwell',
-    'location' => 'Glasgow, Scotland',
     'email' => env('CONTACT_EMAIL', 'hello@emaxdigital.co.uk'),
 
-    'description' => 'Emax Digital is Euan Maxwell: a Glasgow web designer and developer making fast, sharp websites for businesses that don\'t want to look like the rest.',
+    'description' => 'Websites, branding and hosting for businesses that don\'t want to look like everyone else.',
 
-    'statement' => 'No templates. No jargon. Just one person who builds your site properly, makes it fast, and picks up the phone when you need something.',
+    'statement' => 'Your website should work as hard as you do. Sharp design, fast pages, and a site that\'s looked after long after launch day.',
 
     'marquee' => ['Web design', 'Development', 'Branding', 'Hosting', 'Apps'],
 
-    'values' => ['Fast', 'Sharp', 'Looked after', 'Made in Glasgow'],
+    'values' => ['Fast', 'Sharp', 'Looked after', 'Built to last'],
 
     'services' => [
         // 'preview' picks the hover card in resources/views/home/previews/.
@@ -35,9 +33,9 @@ return [
     // First project is shown as the large feature; the rest go in the grid below.
     // 'image' is a path under public/, e.g. 'images/work/print-vision.jpg'.
     'projects' => [
-        ['client' => 'Print Vision', 'type' => 'Website · Logo · Hosting', 'url' => null, 'image' => null],
-        ['client' => '[Client]', 'type' => '[Type]', 'url' => null, 'image' => null],
-        ['client' => '[Client]', 'type' => '[Type]', 'url' => null, 'image' => null],
+        ['client' => 'Print Vision', 'type' => 'Website · Logo · Hosting', 'url' => null, 'image' => 'images/work/print-vision.jpg'],
+        ['client' => 'Fran Jones Massage Therapist', 'type' => 'Website · Logo · Hosting', 'url' => null, 'image' => 'images/work/fran-jones.jpg'],
+        ['client' => 'Esk Vet Consultants', 'type' => 'Website · Hosting', 'url' => null, 'image' => 'images/work/esk-vet.jpg'],
     ],
 
     'process' => [
