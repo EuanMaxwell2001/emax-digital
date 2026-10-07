@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Emax Digital — Home</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100,400;0,100,500;0,125,500;0,125,700;0,125,800;0,125,900;1,125,900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#12181c}
+a{color:#3df5c4}a:hover{color:#ffffff}
+.ex-line{display:block;overflow:hidden;padding-bottom:0.04em}
+.ex-line>span{display:inline-block;animation:exRise 1s cubic-bezier(.16,.84,.24,1) both}
+.ex-d1{animation-delay:.05s}.ex-d2{animation-delay:.17s}.ex-d3{animation-delay:.29s}.ex-d4{animation-delay:.45s}
+@keyframes exRise{from{transform:translateY(105%) skewY(6deg)}to{transform:none}}
+.ex-fade{animation:exFade 1.2s .6s ease both}
+@keyframes exFade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ex-marquee{display:flex;width:max-content;animation:exMarq 26s linear infinite}
+.ex-marquee-rev{display:flex;width:max-content;animation:exMarq 34s linear infinite reverse}
+@keyframes exMarq{to{transform:translateX(-50%)}}
+.ex-spin{animation:exSpin 18s linear infinite}
+@keyframes exSpin{to{transform:rotate(360deg)}}
+.ex-blink{animation:exBlink 1.1s steps(1) infinite}
+@keyframes exBlink{50%{opacity:0}}
+.ex-fill{background-image:linear-gradient(90deg,#12181c 50%,#b9c2c7 50%);background-size:200% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+.ex-svc{transition:background .35s cubic-bezier(.2,.8,.2,1),color .35s}
+.ex-svc .ex-svc-t{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ex-svc .ex-arrow{transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .3s;opacity:0;transform:translateX(-30px)}
+.ex-svc:hover{background:#3df5c4;color:#12181c}
+.ex-svc:hover .ex-svc-t{transform:translateX(28px)}
+.ex-svc:hover .ex-arrow{opacity:1;transform:none}
+.ex-svc:hover .ex-muted{color:#12181c}
+.ex-btn{transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s}
+.ex-btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.ex-card .ex-img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ex-card:hover .ex-img{transform:scale(1.04)}
+.ex-nav a{position:relative;text-decoration:none}
+.ex-nav a.ex-u::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:#3df5c4;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.ex-nav a.ex-u:hover::after{transform:scaleX(1)}
+@supports (animation-timeline: view()){
+.ex-rev{animation:exRev linear both;animation-timeline:view();animation-range:entry 0% cover 30%}
+@keyframes exRev{from{opacity:0;transform:translateY(90px)}to{opacity:1;transform:none}}
+.ex-slide{animation:exSlide linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+@keyframes exSlide{from{opacity:0;transform:translateX(-14%) skewX(-8deg)}to{opacity:1;transform:none}}
+.ex-fill{animation:exFill linear both;animation-timeline:view();animation-range:cover 20% cover 60%}
+@keyframes exFill{from{background-position:100% 0}to{background-position:0 0}}
+.ex-clip{animation:exClip linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+@keyframes exClip{from{clip-path:polygon(18% 12%,100% 12%,82% 88%,0 88%)}to{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}
+.ex-hero-out{animation:exHeroOut linear both;animation-timeline:scroll(root);animation-range:0 700px}
+@keyframes exHeroOut{to{transform:scale(.9) translateY(60px);opacity:.25;filter:blur(2px)}}
+.ex-para{animation:exPara linear both;animation-timeline:scroll(root);animation-range:0 1400px}
+@keyframes exPara{to{transform:translateY(-320px) rotate(4deg)}}
+.ex-skew{animation:exSkew linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+@keyframes exSkew{from{transform:rotate(-4deg) translateX(8%)}to{transform:rotate(-1deg) translateX(-8%)}}
+.ex-grow{animation:exGrow linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
+@keyframes exGrow{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.ex-giant{animation:exGiant linear both;animation-timeline:view();animation-range:entry 0% cover 60%}
+@keyframes exGiant{from{transform:translateY(40%) scaleY(.4)}to{transform:none}}
+.ex-bar{animation:exBar linear both;animation-timeline:view();animation-range:entry 20% cover 50%;transform-origin:left}
+@keyframes exBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+@supports not (animation-timeline: view()){
+.ex-rev,.ex-slide,.ex-grow{opacity:0;transform:translateY(70px);transition:opacity .9s ease,transform 1s cubic-bezier(.16,.84,.24,1)}
+.ex-slide{transform:translateX(-10%) skewX(-6deg)}
+.ex-svc.ex-slide{transition:opacity .9s ease,transform 1s cubic-bezier(.16,.84,.24,1),background .35s,color .35s}
+.ex-grow{transform:scale(.6)}
+.ex-bar{transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.16,.84,.24,1) .2s}
+.ex-clip{clip-path:polygon(18% 12%,100% 12%,82% 88%,0 88%);transition:clip-path 1.3s cubic-bezier(.16,.84,.24,1)}
+.ex-giant{transform:translateY(30%);transition:transform 1.2s cubic-bezier(.16,.84,.24,1)}
+.ex-rev.ex-in,.ex-slide.ex-in,.ex-grow.ex-in,.ex-bar.ex-in,.ex-giant.ex-in{opacity:1;transform:none}
+.ex-clip.ex-in{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}.ex-rev,.ex-slide,.ex-grow,.ex-bar,.ex-giant{opacity:1 !important;transform:none !important}.ex-clip{clip-path:none !important}}
+</style>
+</helmet>
+<div style="background: #12181c; color: #ffffff; font-family: 'Archivo', sans-serif; font-stretch: 100%; font-size: 17px; line-height: 28px; overflow-x: clip;">
+
+  <header style="position: relative; z-index: 5; border-bottom: 1px solid #2a3238;">
+    <nav class="ex-nav" style="max-width: 1360px; margin: 0 auto; padding: 22px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+      <a href="#top" aria-label="Emax Digital home" style="display: flex; align-items: center; gap: 8px; color: #ffffff;">
+        <svg width="14" height="26" viewBox="0 0 44 76" aria-hidden="true"><polygon points="20,0 44,0 24,76 0,76" fill="#3df5c4"></polygon></svg>
+        <span style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 26px; line-height: 26px;">EMAX</span>
+      </a>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 36px; font-stretch: 125%; font-size: 13px; font-weight: 500; letter-spacing: 0.18em;">
+        <a class="ex-u" href="#work" style="color: #ffffff;">WORK</a>
+        <a class="ex-u" href="#services" style="color: #ffffff;">SERVICES</a>
+        <a class="ex-u" href="#process" style="color: #ffffff;">PROCESS</a>
+        <a class="ex-btn" href="#contact" style="background: #3df5c4; color: #12181c; padding: 13px 20px; font-weight: 700;">START A PROJECT</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="top" style="position: relative; overflow: clip; min-height: 860px;">
+    <svg class="ex-para" width="620" height="1070" viewBox="0 0 44 76" aria-hidden="true" style="position: absolute; right: -120px; top: -60px;"><polygon points="20,0 44,0 24,76 0,76" fill="#16302d"></polygon></svg>
+    <div class="ex-hero-out" style="position: relative; max-width: 1360px; margin: 0 auto; padding: 72px 40px 64px; display: flex; flex-direction: column; gap: 48px;">
+      <div class="ex-fade" style="display: flex; align-items: center; gap: 14px; font-stretch: 125%; font-size: 13px; font-weight: 500; letter-spacing: 0.3em; color: #9aa4ab;">
+        <span class="ex-blink" style="width: 10px; height: 10px; background: #3df5c4; display: inline-block;"></span>
+        <span>TAKING ON NEW PROJECTS · GLASGOW</span>
+      </div>
+      <h1 style="margin: 0; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(54px, 10.4vw, 168px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase;">
+        <span class="ex-line"><span class="ex-d1">Websites</span></span>
+        <span class="ex-line"><span class="ex-d2">built to</span></span>
+        <span class="ex-line"><span class="ex-d3">stand <span style="background: #3df5c4; color: #12181c; padding: 0 0.12em; margin-left: -0.04em;">out.</span></span></span>
+      </h1>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px;">
+        <p class="ex-fade" style="margin: 0; max-width: 520px; font-size: 20px; line-height: 32px; color: #c9d0d5;">Emax Digital is Euan Maxwell: a Glasgow web designer and developer making fast, sharp websites for businesses that don't want to look like the rest.</p>
+        <div class="ex-fade" style="position: relative; width: 170px; height: 170px;">
+          <svg class="ex-spin" width="170" height="170" viewBox="0 0 170 170" aria-hidden="true" style="position: absolute; inset: 0;">
+            <defs><path id="exHeroRing" d="M85,85 m-68,0 a68,68 0 1,1 136,0 a68,68 0 1,1 -136,0"></path></defs>
+            <text font-family="Archivo, sans-serif" font-size="12.5" font-weight="700" letter-spacing="3" fill="#ffffff"><textPath href="#exHeroRing" textLength="420" lengthAdjust="spacing">SCROLL · SCROLL · SCROLL · SCROLL ·</textPath></text>
+          </svg>
+          <a href="#services" aria-label="Scroll to services" style="position: absolute; left: 45px; top: 45px; width: 80px; height: 80px; border-radius: 999px; background: #3df5c4; display: flex; align-items: center; justify-content: center;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#12181c" stroke-width="2.6" stroke-linecap="square"><path d="M12 4v15M5 12l7 7 7-7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background: #3df5c4; color: #12181c; transform: rotate(-2deg); margin: 0 -40px; padding: 18px 0; overflow: clip; position: relative; z-index: 2;">
+    <div class="ex-marquee" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 44px; line-height: 52px; white-space: nowrap; gap: 40px;">
+      <span>WEB DESIGN /</span><span>DEVELOPMENT /</span><span>BRANDING /</span><span>HOSTING /</span><span>APPS /</span><span>WEB DESIGN /</span><span>DEVELOPMENT /</span><span>BRANDING /</span><span>HOSTING /</span><span>APPS /</span>
+      <span>WEB DESIGN /</span><span>DEVELOPMENT /</span><span>BRANDING /</span><span>HOSTING /</span><span>APPS /</span><span>WEB DESIGN /</span><span>DEVELOPMENT /</span><span>BRANDING /</span><span>HOSTING /</span><span>APPS /</span>
+    </div>
+  </div>
+
+  <section style="background: #eef1f1; color: #12181c; margin-top: -40px; padding: 220px 0 240px;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px;">
+      <span style="font-stretch: 125%; font-size: 13px; font-weight: 700; letter-spacing: 0.3em; color: #4a545c;">THE IDEA</span>
+      <p ref="{{ setStatement }}" aria-label="{{ statement }}" style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(32px, 5vw, 76px); line-height: 1.08; letter-spacing: -0.015em; display: flex; flex-wrap: wrap; column-gap: 0.26em;"><sc-for list="{{ words }}" as="w" hint-placeholder-count="24"><span aria-hidden="true" style="{{ w.style }}">{{ w.text }}</span></sc-for></p>
+    </div>
+  </section>
+
+  <section id="services" style="background: #12181c; padding: 140px 0 120px;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px;">
+      <h2 class="ex-rev" style="margin: 0; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 0.9; text-transform: uppercase;">What<br>I do</h2>
+      <p class="ex-rev" style="margin: 0; max-width: 380px; color: #9aa4ab;">Everything you need to get online and stay there, from first sketch to keeping the lights on.</p>
+    </div>
+    <div style="border-top: 1px solid #2a3238;">
+      <a href="#contact" class="ex-svc ex-slide" style="display: block; color: #ffffff; text-decoration: none; border-bottom: 1px solid #2a3238;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: 34px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px;">
+          <span class="ex-muted" style="font-stretch: 125%; font-size: 14px; font-weight: 700; color: #3df5c4; width: 40px;">01</span>
+          <span class="ex-svc-t" style="flex: 1 1 420px; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(36px, 5.6vw, 88px); line-height: 1; text-transform: uppercase;">Websites</span>
+          <span class="ex-muted" style="flex: 0 1 320px; color: #9aa4ab; font-size: 16px; line-height: 26px;">Custom-built, quick to load, and easy for you to update.</span>
+          <svg class="ex-arrow" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 19L19 5M8 5h11v11"></path></svg>
+        </div>
+      </a>
+      <a href="#contact" class="ex-svc ex-slide" style="display: block; color: #ffffff; text-decoration: none; border-bottom: 1px solid #2a3238;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: 34px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px;">
+          <span class="ex-muted" style="font-stretch: 125%; font-size: 14px; font-weight: 700; color: #3df5c4; width: 40px;">02</span>
+          <span class="ex-svc-t" style="flex: 1 1 420px; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(36px, 5.6vw, 88px); line-height: 1; text-transform: uppercase;">Branding</span>
+          <span class="ex-muted" style="flex: 0 1 320px; color: #9aa4ab; font-size: 16px; line-height: 26px;">Logos and brand guides that make you look like you mean it.</span>
+          <svg class="ex-arrow" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 19L19 5M8 5h11v11"></path></svg>
+        </div>
+      </a>
+      <a href="#contact" class="ex-svc ex-slide" style="display: block; color: #ffffff; text-decoration: none; border-bottom: 1px solid #2a3238;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: 34px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px;">
+          <span class="ex-muted" style="font-stretch: 125%; font-size: 14px; font-weight: 700; color: #3df5c4; width: 40px;">03</span>
+          <span class="ex-svc-t" style="flex: 1 1 420px; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(36px, 5.6vw, 88px); line-height: 1; text-transform: uppercase;">Hosting</span>
+          <span class="ex-muted" style="flex: 0 1 320px; color: #9aa4ab; font-size: 16px; line-height: 26px;">Hosted, backed up and kept secure, with small changes included.</span>
+          <svg class="ex-arrow" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 19L19 5M8 5h11v11"></path></svg>
+        </div>
+      </a>
+      <a href="#contact" class="ex-svc ex-slide" style="display: block; color: #ffffff; text-decoration: none; border-bottom: 1px solid #2a3238;">
+        <div style="max-width: 1360px; margin: 0 auto; padding: 34px 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px;">
+          <span class="ex-muted" style="font-stretch: 125%; font-size: 14px; font-weight: 700; color: #3df5c4; width: 40px;">04</span>
+          <span class="ex-svc-t" style="flex: 1 1 420px; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(36px, 5.6vw, 88px); line-height: 1; text-transform: uppercase;">Apps</span>
+          <span class="ex-muted" style="flex: 0 1 320px; color: #9aa4ab; font-size: 16px; line-height: 26px;">Booking tools, dashboards and mobile apps when a site isn't enough.</span>
+          <svg class="ex-arrow" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 19L19 5M8 5h11v11"></path></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="work" style="background: #eef1f1; color: #12181c; padding: 140px 0;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 72px;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px;">
+        <h2 class="ex-rev" style="margin: 0; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 0.9; text-transform: uppercase;">Selected<br>work</h2>
+        <span class="ex-rev" style="font-stretch: 125%; font-size: 13px; font-weight: 700; letter-spacing: 0.3em; color: #4a545c;">2026 —</span>
+      </div>
+      <a href="#work" class="ex-card" style="color: #12181c; text-decoration: none; display: flex; flex-direction: column; gap: 22px;">
+        <div class="ex-clip" style="aspect-ratio: 16 / 8; overflow: hidden; background: #12181c;">
+          <div class="ex-img" style="width: 100%; height: 100%; background: #3df5c4; display: flex; align-items: center; justify-content: center; font-stretch: 125%; font-size: 14px; font-weight: 700; letter-spacing: 0.3em;">[ PRINT VISION SCREENSHOT ]</div>
+        </div>
+        <div class="ex-rev" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px;">
+          <span style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(30px, 3.4vw, 52px); line-height: 1; text-transform: uppercase;">Print Vision</span>
+          <span style="font-stretch: 125%; font-size: 13px; font-weight: 700; letter-spacing: 0.24em; color: #4a545c;">WEBSITE · LOGO · HOSTING</span>
+        </div>
+      </a>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px;">
+        <a href="#work" class="ex-card" style="color: #12181c; text-decoration: none; display: flex; flex-direction: column; gap: 20px;">
+          <div class="ex-clip" style="aspect-ratio: 4 / 3; overflow: hidden; background: #12181c;">
+            <div class="ex-img" style="width: 100%; height: 100%; background: #12181c; color: #9aa4ab; display: flex; align-items: center; justify-content: center; font-stretch: 125%; font-size: 13px; font-weight: 700; letter-spacing: 0.3em;">[ SCREENSHOT ]</div>
+          </div>
+          <div class="ex-rev" style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+            <span style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase;">[Client]</span>
+            <span style="font-stretch: 125%; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; color: #4a545c;">[TYPE]</span>
+          </div>
+        </a>
+        <a href="#work" class="ex-card" style="color: #12181c; text-decoration: none; display: flex; flex-direction: column; gap: 20px; padding-top: 80px;">
+          <div class="ex-clip" style="aspect-ratio: 4 / 3; overflow: hidden; background: #12181c;">
+            <div class="ex-img" style="width: 100%; height: 100%; background: #d6dcdd; color: #4a545c; display: flex; align-items: center; justify-content: center; font-stretch: 125%; font-size: 13px; font-weight: 700; letter-spacing: 0.3em;">[ SCREENSHOT ]</div>
+          </div>
+          <div class="ex-rev" style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+            <span style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 32px; line-height: 1; text-transform: uppercase;">[Client]</span>
+            <span style="font-stretch: 125%; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; color: #4a545c;">[TYPE]</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="background: #3df5c4; color: #12181c; padding: 130px 0 120px; overflow: clip;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 64px;">
+      <h2 class="ex-rev" style="margin: 0; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(44px, 6vw, 96px); line-height: 0.9; text-transform: uppercase;">How it<br>works</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 40px 32px;">
+        <div class="ex-rev" style="display: flex; flex-direction: column; gap: 14px;">
+          <span class="ex-grow" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 120px; line-height: 0.85;">01</span>
+          <span class="ex-bar" style="height: 4px; background: #12181c;"></span>
+          <span style="font-stretch: 125%; font-weight: 800; font-size: 22px; text-transform: uppercase;">Chat</span>
+          <span style="font-size: 16px; line-height: 26px;">We talk about your business. You get a clear plan before anything starts.</span>
+        </div>
+        <div class="ex-rev" style="display: flex; flex-direction: column; gap: 14px;">
+          <span class="ex-grow" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 120px; line-height: 0.85;">02</span>
+          <span class="ex-bar" style="height: 4px; background: #12181c;"></span>
+          <span style="font-stretch: 125%; font-weight: 800; font-size: 22px; text-transform: uppercase;">Design</span>
+          <span style="font-size: 16px; line-height: 26px;">You see the design early and we shape it together until it's right.</span>
+        </div>
+        <div class="ex-rev" style="display: flex; flex-direction: column; gap: 14px;">
+          <span class="ex-grow" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 120px; line-height: 0.85;">03</span>
+          <span class="ex-bar" style="height: 4px; background: #12181c;"></span>
+          <span style="font-stretch: 125%; font-weight: 800; font-size: 22px; text-transform: uppercase;">Build</span>
+          <span style="font-size: 16px; line-height: 26px;">Built properly, tested on real phones, handed over with a quick how-to.</span>
+        </div>
+        <div class="ex-rev" style="display: flex; flex-direction: column; gap: 14px;">
+          <span class="ex-grow" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 120px; line-height: 0.85;">04</span>
+          <span class="ex-bar" style="height: 4px; background: #12181c;"></span>
+          <span style="font-stretch: 125%; font-weight: 800; font-size: 22px; text-transform: uppercase;">Launch</span>
+          <span style="font-size: 16px; line-height: 26px;">It goes live, and I keep it fast, safe and up to date afterwards.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="background: #12181c; border-top: 1px solid #2a3238; border-bottom: 1px solid #2a3238; padding: 22px 0; overflow: clip;">
+    <div class="ex-marquee-rev" style="font-stretch: 125%; font-style: italic; font-weight: 900; font-size: 30px; line-height: 36px; white-space: nowrap; gap: 36px; color: #2f3a41;">
+      <span>FAST</span><span style="color: #3df5c4;">✦</span><span>SHARP</span><span style="color: #3df5c4;">✦</span><span>LOOKED AFTER</span><span style="color: #3df5c4;">✦</span><span>MADE IN GLASGOW</span><span style="color: #3df5c4;">✦</span><span>FAST</span><span style="color: #3df5c4;">✦</span><span>SHARP</span><span style="color: #3df5c4;">✦</span><span>LOOKED AFTER</span><span style="color: #3df5c4;">✦</span><span>MADE IN GLASGOW</span><span style="color: #3df5c4;">✦</span>
+      <span>FAST</span><span style="color: #3df5c4;">✦</span><span>SHARP</span><span style="color: #3df5c4;">✦</span><span>LOOKED AFTER</span><span style="color: #3df5c4;">✦</span><span>MADE IN GLASGOW</span><span style="color: #3df5c4;">✦</span><span>FAST</span><span style="color: #3df5c4;">✦</span><span>SHARP</span><span style="color: #3df5c4;">✦</span><span>LOOKED AFTER</span><span style="color: #3df5c4;">✦</span><span>MADE IN GLASGOW</span><span style="color: #3df5c4;">✦</span>
+    </div>
+  </div>
+
+  <section id="contact" style="background: #12181c; padding: 150px 0 80px;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 56px;">
+      <h2 class="ex-slide" style="margin: 0; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(54px, 10vw, 160px); line-height: 0.88; letter-spacing: -0.02em; text-transform: uppercase;">Got a<br>project<span style="color: #3df5c4;">?</span></h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 40px;">
+        <div class="ex-rev" style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="color: #9aa4ab;">Tell me what you need. I'll get back to you within a day.</span>
+          <a href="mailto:hello@emaxdigital.co.uk" style="font-stretch: 125%; font-weight: 800; font-size: clamp(22px, 2.6vw, 36px); line-height: 1.2; color: #ffffff; text-decoration: underline; text-decoration-color: #3df5c4; text-decoration-thickness: 4px; text-underline-offset: 8px;">[hello@emaxdigital.co.uk]</a>
+        </div>
+        <a href="mailto:hello@emaxdigital.co.uk" class="ex-btn ex-grow" style="width: 220px; height: 220px; border-radius: 999px; background: #3df5c4; color: #12181c; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-stretch: 125%; font-weight: 900; font-style: italic; font-size: 22px; line-height: 24px; text-align: center;">START A<br>PROJECT<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#12181c" stroke-width="2.6" stroke-linecap="square"><path d="M5 19L19 5M8 5h11v11"></path></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #12181c; overflow: clip;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-stretch: 125%; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: #9aa4ab; border-top: 1px solid #2a3238; padding-top: 28px;">
+      <span>EUAN MAXWELL, TRADING AS EMAX DIGITAL</span>
+      <span>GLASGOW, SCOTLAND</span>
+      <span>© 2026</span>
+    </div>
+    <div class="ex-giant" style="display: flex; align-items: flex-end; justify-content: center; gap: 2vw; padding-top: 40px; margin-bottom: -0.16em; font-stretch: 125%; font-style: italic; font-weight: 900; font-size: clamp(90px, 23vw, 360px); line-height: 0.8; color: #3df5c4; white-space: nowrap; transform-origin: bottom;">
+      <svg viewBox="0 0 44 76" aria-hidden="true" style="flex: none; width: 0.32em; height: 0.62em; margin-bottom: 0.19em;"><polygon points="20,0 44,0 24,76 0,76" fill="#3df5c4"></polygon></svg>
+      <span>EMAX</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6200}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { p: 0 };
+this.statementEl = null;
+this.statement = 'No templates. No jargon. Just one person who builds your site properly, makes it fast, and picks up the phone when you need something.';
+this.setStatement = (el) => { this.statementEl = el; };
+this.onScroll = () => {
+if (!this.statementEl) return;
+const r = this.statementEl.getBoundingClientRect();
+const vh = window.innerHeight || document.documentElement.clientHeight;
+const start = vh * 0.85;
+const end = vh * 0.35;
+const raw = (start - r.top) / ((start - end) + r.height);
+const p = Math.round(Math.max(0, Math.min(1, raw)) * 100) / 100;
+if (p !== this.state.p) this.setState({ p: p });
+};
+}
+componentDidMount() {
+const supportsTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline: view()');
+if (!supportsTimeline && 'IntersectionObserver' in window) {
+this.io = new IntersectionObserver((entries) => {
+entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('ex-in'); this.io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+setTimeout(() => {
+document.querySelectorAll('.ex-rev, .ex-slide, .ex-grow, .ex-bar, .ex-clip, .ex-giant').forEach((el) => this.io.observe(el));
+}, 50);
+}
+document.addEventListener('scroll', this.onScroll, { passive: true, capture: true });
+window.addEventListener('resize', this.onScroll);
+this.onScroll();
+setTimeout(this.onScroll, 300);
+}
+componentWillUnmount() {
+if (this.io) this.io.disconnect();
+document.removeEventListener('scroll', this.onScroll, { capture: true });
+window.removeEventListener('resize', this.onScroll);
+}
+renderVals() {
+const parts = this.statement.split(' ');
+const n = parts.length;
+const lit = this.state.p * n;
+const words = parts.map((t, i) => {
+const on = i < lit;
+return { text: t, style: 'color: ' + (on ? '#12181c' : '#b9c2c7') + '; transition: color .25s ease;' };
+});
+return { words: words, statement: this.statement, setStatement: this.setStatement };
+}
+}
+</script>
+</body>
+</html>
