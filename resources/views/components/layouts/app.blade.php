@@ -31,7 +31,8 @@
 <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-ion focus:px-4 focus:py-2 focus:text-ink">Skip to content</a>
 
-    <div class="overflow-x-clip">
+    {{-- x-data here puts the whole page in Alpine's scope, so directives like x-magnetic work anywhere --}}
+    <div x-data class="overflow-x-clip">
         {{ $slot }}
     </div>
 </body>

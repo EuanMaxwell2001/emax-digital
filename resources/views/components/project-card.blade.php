@@ -10,13 +10,13 @@
 @endphp
 
 <{{ $tag }} @if ($project['url']) href="{{ $project['url'] }}" target="_blank" rel="noopener" @endif
-    {{ $attributes->class(['group flex flex-col text-ink', $feature ? 'gap-[22px]' : 'gap-5']) }}>
-    <div class="clip-in aspect-[16/10] overflow-hidden bg-ink">
+    {{ $attributes->class(['flex flex-col text-ink', $feature ? 'gap-[22px]' : 'gap-5']) }}>
+    <div @class(['clip-in aspect-[16/10] overflow-hidden', 'bg-ink' => ! $project['image']])>
         @if ($project['image'])
             <img src="{{ asset($project['image']) }}" alt="{{ $project['client'] }} website homepage" loading="lazy" decoding="async"
-                 class="size-full object-cover transition-transform duration-800 ease-snap group-hover:scale-[1.04]">
+                 class="size-full object-cover">
         @else
-            <div class="flex size-full items-center justify-center font-label text-[13px] font-bold tracking-[0.3em] transition-transform duration-800 ease-snap group-hover:scale-[1.04] {{ $placeholder }}">
+            <div class="flex size-full items-center justify-center font-label text-[13px] font-bold tracking-[0.3em] {{ $placeholder }}">
                 [ {{ $project['client'] }} screenshot ]
             </div>
         @endif

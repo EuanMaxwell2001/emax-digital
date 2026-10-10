@@ -1,6 +1,6 @@
 <section id="services" class="bg-ink pt-[140px] pb-[120px]">
     <div class="wrap flex flex-wrap items-end justify-between gap-6 pb-14">
-        <x-section-heading>What<br>I do</x-section-heading>
+        <x-section-heading>What<br>we do</x-section-heading>
         <p class="reveal m-0 max-w-[380px] text-muted" style="--d: 150ms">Everything you need to get online and stay there, from first sketch to keeping the lights on.</p>
     </div>
 
