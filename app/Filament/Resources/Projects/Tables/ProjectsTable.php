@@ -20,6 +20,7 @@ class ProjectsTable
         return $table
             ->reorderable('sort_order')
             ->defaultSort('sort_order')
+            ->recordUrl(fn (Project $p) => \App\Filament\Resources\Projects\ProjectResource::getUrl('edit', ['record' => $p]))
             ->description('The order here is the order on the homepage. Use the reorder button to drag them.')
             ->columns([
                 ImageColumn::make('cover_path')->label('')->disk('public')->imageHeight(48),
@@ -31,8 +32,8 @@ class ProjectsTable
                 TextColumn::make('updated_at')->label('Updated')->since()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->recordActions([
-                Action::make('view')
-                    ->label('View')
+                Action::make('viewOnSite')
+                    ->label('View on site')
                     ->icon(Heroicon::OutlinedArrowTopRightOnSquare)
                     ->url(fn (Project $p) => $p->url())
                     ->openUrlInNewTab(),

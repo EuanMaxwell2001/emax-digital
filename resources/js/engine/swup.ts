@@ -19,7 +19,7 @@ export function start(setup?: () => void) {
     linkToSelf: 'navigate', // the logo on the homepage replays the transition
     ignoreVisit: (url, { el } = {}) =>
       !!el?.closest('[data-no-swup]') || /^\/(admin|storage|livewire)(\/|$)/.test(url),
-    plugins: [new SwupHeadPlugin({ persistAssets: true }), new SwupPreloadPlugin()],
+    plugins: [new SwupHeadPlugin({ persistAssets: true }), new SwupPreloadPlugin({ preloadInitialPage: false })],
   });
 
   swup.hooks.replace('animation:out:await', () => leave());

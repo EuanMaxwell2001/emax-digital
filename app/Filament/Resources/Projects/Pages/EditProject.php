@@ -15,7 +15,7 @@ class EditProject extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('view')
+            Action::make('viewOnSite')
                 ->label('View on site')
                 ->icon(Heroicon::OutlinedArrowTopRightOnSquare)
                 ->color('gray')

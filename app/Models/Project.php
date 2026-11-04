@@ -15,6 +15,12 @@ class Project extends Model
 
     protected $guarded = ['id'];
 
+    protected static function booted(): void
+    {
+        // Delete details one by one (not just the database cascade) so their image files go too.
+        static::deleting(fn (Project $p) => $p->details()->get()->each->delete());
+    }
+
     protected function casts(): array
     {
         return [
