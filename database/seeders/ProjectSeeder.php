@@ -63,7 +63,7 @@ class ProjectSeeder extends Seeder
                     ['image_path' => 'print-vision-ticker.jpg', 'alt' => 'A black strip listing banners, canvas prints, pop-up displays, letterheads and annual reports.', 'caption' => 'A ticker of what they print, so nobody has to dig for it.', 'shape' => 'strip'],
                     ['image_path' => 'print-vision-intro.jpg', 'alt' => 'The intro paragraph beside two buttons: Get a quote and See the work.', 'caption' => 'Plain words about the kit and the people, then two clear next steps.', 'shape' => 'strip'],
                 ],
-                'outcome' => 'Launched in 2026 with a new logo, and hosted by EMAX. The phone number sits in the top corner of every page, because most print jobs still start with a call.',
+                'outcome' => 'Launched in 2026 with a new logo, and hosted by EMAX Digital. The phone number sits in the top corner of every page, because most print jobs still start with a call.',
             ],
             [
                 'slug' => 'fran-jones',
@@ -82,7 +82,7 @@ class ProjectSeeder extends Seeder
                     ['image_path' => 'fran-jones-treatments.jpg', 'alt' => 'Three treatment cards: sports and remedial, Swedish, and Indian head massage.', 'caption' => 'Each treatment explained the way Fran would explain it in person.', 'shape' => 'wide'],
                     ['image_path' => 'fran-jones-review.jpg', 'alt' => 'A client review praising Fran’s massage, signed Susie Maxwell.', 'caption' => 'Reviews from real clients, given room to breathe.', 'shape' => 'small'],
                 ],
-                'outcome' => 'Live with a new logo and EMAX hosting, with small changes to treatments and prices covered by the monthly plan.',
+                'outcome' => 'Live with a new logo and EMAX Digital hosting, with small changes to treatments and prices covered by the monthly plan.',
             ],
             [
                 'slug' => 'esk-vet',
@@ -101,7 +101,7 @@ class ProjectSeeder extends Seeder
                     ['image_path' => 'esk-vet-photo.jpg', 'alt' => 'Racehorses and jockeys clearing a fence, framed with a gold offset edge.', 'caption' => 'Photography that shows the clients, not the clinic.', 'shape' => 'square'],
                     ['image_path' => 'esk-vet-services.jpg', 'alt' => 'The services introduction: “Our services” with a short summary of diagnostic and surgical work.', 'caption' => 'Services introduced in a sentence a trainer can scan at the yard.', 'shape' => 'strip'],
                 ],
-                'outcome' => 'Live and hosted by EMAX, with backups and security updates running in the background so the team can get on with their day.',
+                'outcome' => 'Live and hosted by EMAX Digital, with backups and security updates running in the background so the team can get on with their day.',
             ],
         ];
     }

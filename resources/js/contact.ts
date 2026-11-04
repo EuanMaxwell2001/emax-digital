@@ -38,14 +38,14 @@ export function initContactForm() {
         showErrors(form, data.errors as Errors);
         status.textContent = data.errors.form?.[0] ?? 'Please check the highlighted fields.';
       } else if (res.status === 429) {
-        status.textContent = 'That is a lot of messages. Please try again later, or email me below.';
+        status.textContent = 'That is a lot of messages. Please try again later, or email us below.';
       } else if (res.status === 419) {
-        status.textContent = 'This page was open a while. Refresh it and try again, or email me below.';
+        status.textContent = 'This page was open a while. Refresh it and try again, or email us below.';
       } else {
-        status.textContent = 'Something went wrong sending that. Please email me below instead.';
+        status.textContent = 'Something went wrong sending that. Please email us below instead.';
       }
     } catch {
-      status.textContent = 'Could not connect. Please check your connection, or email me below.';
+      status.textContent = 'Could not connect. Please check your connection, or email us below.';
     } finally {
       form.classList.remove('is-sending');
     }

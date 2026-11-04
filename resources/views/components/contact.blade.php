@@ -7,7 +7,7 @@
   <div class="contact__top">
     <p class="label">Start a project</p>
     <h2 id="contact-title" class="contact__title" data-split="lines">Got a business worth shouting about?</h2>
-    <p class="contact__lead">Tell me what you do and what you need. {{ $site['reply_time'] }}</p>
+    <p class="contact__lead">Tell us what you do and what you need.</p>
 
     <form class="cform" method="post" action="{{ route('contact.store') }}" data-contact-form @if ($sent) hidden @endif>
       @csrf
@@ -37,8 +37,8 @@
       </div>
     </form>
     <div class="cform__done" data-contact-done tabindex="-1" @unless ($sent) hidden @endunless>
-      <p class="cform__done-title">Thanks, that's with me.</p>
-      <p>{{ $site['reply_time'] }} If it's urgent, email me below.</p>
+      <p class="cform__done-title">Thanks, that's with us.</p>
+      <p>We'll be in touch soon. If it's urgent, email us below.</p>
     </div>
   </div>
   <a class="contact__email" href="mailto:{{ $site['email'] }}" data-magnetic="0.12">
@@ -47,7 +47,7 @@
   </a>
   <div class="contact__base">
     <img class="contact__logo" src="/brand/emax-logo-mono.png" width="800" height="212" alt="{{ $site['name'] }}" loading="lazy" decoding="async" />
-    <p>© {{ date('Y') }} {{ $site['name'] }}. UK freelance web studio.</p>
+    <p>© {{ date('Y') }} {{ $site['name'] }}. Web design studio, UK.</p>
     <p><a class="u-link" href="#main" data-top>Back to top</a></p>
   </div>
 </footer>

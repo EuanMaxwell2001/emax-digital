@@ -4,7 +4,7 @@ Portfolio/agency site for EMAX Digital, the owner's one-person UK freelance web 
 A port of the finished Astro site in `../emax-new` (kept untouched as the reference).
 
 **The owner loves the design. Do not redesign anything.** Design system and rationale:
-`../emax-new/DESIGN.md`. Copy: first person ("I"), no em dashes in visible text.
+`../emax-new/DESIGN.md`. Copy: "we" voice (owner prefers not to stress it being one person), no em dashes in visible text.
 
 ## Stack
 - Laravel 13, PHP 8.4 (Docker stack `../../stacks/emax`, http://emax.test), MySQL (shared server).

@@ -16,7 +16,7 @@
       <p class="case__summary">{{ $p->summary }}</p>
       <dl class="case__meta">
         <div><dt>Client</dt><dd>{{ $p->sector }}</dd></div>
-        <div><dt>What EMAX did</dt><dd>{{ implode(', ', $p->services) }}</dd></div>
+        <div><dt>What EMAX Digital did</dt><dd>{{ implode(', ', $p->services) }}</dd></div>
         @if ($p->year)<div><dt>Year</dt><dd>{{ $p->year }}</dd></div>@endif
       </dl>
     </header>

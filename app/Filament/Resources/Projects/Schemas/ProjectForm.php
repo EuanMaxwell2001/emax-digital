@@ -69,7 +69,7 @@ class ProjectForm
                             ->maxLength(120)
                             ->placeholder('Edinburgh printers'),
                         TagsInput::make('services')
-                            ->label('What EMAX did')
+                            ->label('What EMAX Digital did')
                             ->required()
                             ->suggestions(['Website', 'Logo', 'Branding', 'Hosting', 'App'])
                             ->placeholder('Add a service'),

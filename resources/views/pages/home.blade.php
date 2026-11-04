@@ -49,7 +49,7 @@
     <div class="sec-head">
       <p class="label">Selected work</p>
       <h2 id="work-title" class="sec-title" data-split="lines">Recent projects</h2>
-      <p class="sec-note">Three small businesses that now have a website they are proud to send people to. All three are still hosted and looked after by EMAX.</p>
+      <p class="sec-note">Three small businesses that now have a website they are proud to send people to. All three are still hosted and looked after by EMAX Digital.</p>
     </div>
     <ol class="cards" data-cards>
       @foreach ($projects as $i => $p)
@@ -80,7 +80,7 @@
   <section id="services" class="services" aria-labelledby="services-title">
     <div class="sec-head">
       <p class="label">Services</p>
-      <h2 id="services-title" class="sec-title" data-split="lines">What I do</h2>
+      <h2 id="services-title" class="sec-title" data-split="lines">What we do</h2>
       <p class="sec-note">Pick one or all four. Each row opens an email about it.</p>
     </div>
     <ul class="svc">
@@ -125,8 +125,8 @@
     </div>
     <figure class="about__photo">
       <div class="about__mask">
-        <x-picture src="me.jpg" disk="static" alt="Portrait of the founder of EMAX Digital, smiling, arms folded, in a white T-shirt."
-          :widths="[320, 480, 640]" sizes="(max-width: 767px) 70vw, 26vw" />
+        <x-picture src="me.jpg" disk="static" alt="Portrait of Euan Maxwell of EMAX Digital, smiling, arms folded, in a white T-shirt."
+          :widths="[320, 480, 640]" sizes="(max-width: 767px) 50vw, 18vw" />
       </div>
       <figcaption>{{ $site['about']['caption'] }}</figcaption>
     </figure>
