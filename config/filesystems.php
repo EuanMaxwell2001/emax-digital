@@ -41,7 +41,18 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            // Root-relative, so image URLs work on any host name.
+            'url' => '/storage',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        // Hardcoded site images (the About portrait) and their generated sizes, committed to git.
+        'static' => [
+            'driver' => 'local',
+            'root' => public_path('images'),
+            'url' => '/images',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
