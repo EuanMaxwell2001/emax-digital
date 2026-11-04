@@ -54,8 +54,9 @@ class Project extends Model
         return $i === false ? $all->first() : $all[($i + 1) % $all->count()];
     }
 
+    /** Root-relative, like the rest of the site's links. Wrap in url() for an absolute URL. */
     public function url(): string
     {
-        return route('work.show', $this);
+        return route('work.show', $this, absolute: false);
     }
 }
