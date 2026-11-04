@@ -37,6 +37,12 @@ projects and prints an admin password. Re-running it resets those three projects
 `.env` on the server: `MAIL_MAILER=log` means emails are only written to the log. For the contact
 form to email you, set real SMTP `MAIL_*` details. `CONTACT_TO` defaults to hello@emaxdigital.co.uk.
 
+RunCloud's PHP hardening ("disable_functions" in the web app's PHP settings) blocks `tmpfile`,
+`ignore_user_abort` and `set_time_limit`. Livewire needs `tmpfile` for uploads in the admin and
+`ignore_user_abort` for upload previews, so remove those two from the list in the RunCloud panel.
+(Livewire's script is published to `public/vendor/livewire` on `composer install`, so the admin
+login works either way.) Pushing to `main` makes RunCloud `git pull` only; run the steps above.
+
 Images: RunCloud's PHP (GD) writes WebP but not AVIF, so the site serves WebP and JPEG there and
 AVIF only where PHP supports it. No queue worker or cron is needed: image sizes and emails run
 after the response is sent.
