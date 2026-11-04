@@ -13,10 +13,8 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    # Trailing slashes are redirected by Laravel (RemoveTrailingSlash), which knows the site is
+    # on https; Apache behind RunCloud's nginx only sees http and would redirect there first.
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
