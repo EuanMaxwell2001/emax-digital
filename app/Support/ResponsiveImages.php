@@ -41,7 +41,10 @@ class ResponsiveImages
             return null;
         }
 
-        @set_time_limit(300);
+        // RunCloud disables set_time_limit (calling a disabled function is a fatal error in PHP 8).
+        if (function_exists('set_time_limit')) {
+            set_time_limit(300);
+        }
         $source = self::manager()->decodePath($fs->path($path));
         $width = $source->width();
         $height = $source->height();
