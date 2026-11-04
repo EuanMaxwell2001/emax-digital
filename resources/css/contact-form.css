@@ -1,0 +1,45 @@
+/* ---------- Contact form (Laravel version): sits in the mint contact section ----------
+   Ink on mint, the section's 3px ink rules, tracked-caps labels, and the slash button sweep. */
+.cform, .cform__done { grid-column: 7 / -1; grid-row: 3 / span 2; align-self: start; }
+.cform[hidden], .cform__done[hidden] { display: none; }
+.cform { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 3) var(--gutter); }
+.cform__field { display: grid; gap: 0.5rem; align-content: start; }
+.cform__field--wide, .cform__foot { grid-column: 1 / -1; }
+.cform .label { color: var(--c-ink); }
+.cform input, .cform textarea {
+  width: 100%; border: 0; border-radius: var(--radius); background: transparent; color: var(--c-ink);
+  font: inherit; font-size: var(--t-m); font-weight: 520; line-height: 1.3;
+  padding: 0.35em 0 0.45em; box-shadow: inset 0 -3px 0 var(--c-ink);
+  transition: box-shadow 0.35s var(--e-out), background-color 0.35s var(--e-soft);
+}
+.cform textarea { resize: vertical; min-height: 7.5em; }
+.cform input:focus-visible, .cform textarea:focus-visible {
+  outline: none; box-shadow: inset 0 -7px 0 var(--c-ink); background: rgb(18 24 28 / 0.06);
+}
+.cform [aria-invalid='true'] { background: rgb(18 24 28 / 0.08); }
+.cform__err { min-height: 1.3em; font-size: var(--t-xs); font-weight: 700; line-height: 1.3; }
+.cform__err:empty { min-height: 0; }
+.cform__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cform__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.5rem; }
+.cform__status { font-size: var(--t-s); font-weight: 650; }
+.cform.is-sending .btn { pointer-events: none; opacity: 0.7; }
+
+.btn--ink { background: var(--c-ink); color: var(--c-mint); box-shadow: inset 0 0 0 2px var(--c-ink); }
+.btn--ink::before { background: var(--c-fg); }
+@media (hover: hover) { .btn--ink:hover { color: var(--c-ink); } }
+.btn--ink:focus-visible, .btn--ink:active { color: var(--c-ink); }
+
+.cform__done { display: grid; gap: 1rem; font-size: var(--t-m); font-weight: 520; line-height: 1.3; }
+.cform__done:focus { outline: none; }
+.cform__done-title {
+  font-family: var(--f-display); font-style: italic; font-stretch: 125%; font-weight: 900;
+  text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.95; font-size: var(--t-l);
+}
+
+@media (max-width: 1100px) {
+  .cform, .cform__done { grid-column: 6 / -1; }
+}
+@media (max-width: 767px) {
+  .cform, .cform__done { grid-column: 1; grid-row: auto; }
+  .cform { grid-template-columns: 1fr; }
+}

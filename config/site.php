@@ -1,48 +1,69 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Site content
-|--------------------------------------------------------------------------
-|
-| Homepage copy lives here until the CMS is added. Each list maps cleanly
-| onto a future database table (services, projects, process steps).
-|
-*/
+// Site copy (was src/data/site.ts in the Astro version). The homepage is hardcoded here;
+// projects are edited in the admin (/admin). Voice: first person, no em dashes.
 
 return [
-
-    'email' => env('CONTACT_EMAIL', 'hello@emaxdigital.co.uk'),
-
-    'description' => 'Websites, branding and hosting for businesses that don\'t want to look like everyone else.',
-
-    'statement' => 'Your website should work as hard as you do. Sharp design, fast pages, and a site that\'s looked after long after launch day.',
-
-    'marquee' => ['Web design', 'Development', 'Branding', 'Hosting', 'Apps'],
-
-    'values' => ['Fast', 'Sharp', 'Looked after', 'Built to last'],
+    'name' => 'EMAX Digital',
+    'short' => 'EMAX',
+    'role' => 'Websites, branding and hosting for small businesses',
+    'email' => 'hello@emaxdigital.co.uk',
+    // Contact form submissions are emailed here.
+    'contact_to' => env('CONTACT_TO', 'hello@emaxdigital.co.uk'),
+    'reply_time' => 'I reply within a day.',
+    'tagline' => 'Websites built to stand out.',
+    'hero' => [
+        'sub' => 'Fast, custom websites for small businesses. Designed, built and looked after by one person you can actually talk to.',
+        'meta' => 'Freelance web studio, UK',
+    ],
+    'description' => 'EMAX Digital is a UK freelance studio designing, building and hosting fast, custom websites for small businesses. Websites built to stand out.',
 
     'services' => [
-        // 'preview' picks the hover card in resources/views/home/previews/.
-        ['preview' => 'websites', 'title' => 'Websites', 'blurb' => 'Custom-built, quick to load, and easy for you to update.'],
-        ['preview' => 'branding', 'title' => 'Branding', 'blurb' => 'Logos and brand guides that make you look like you mean it.'],
-        ['preview' => 'hosting', 'title' => 'Hosting', 'blurb' => 'Hosted, backed up and kept secure, with small changes included.'],
-        ['preview' => 'apps', 'title' => 'Apps', 'blurb' => 'Booking tools, dashboards and mobile apps when a site isn\'t enough.'],
+        [
+            'name' => 'Websites',
+            'line' => 'Custom design, quick on a phone, and easy for you to update.',
+            'detail' => 'No templates. Every page designed around what your customers need to find.',
+        ],
+        [
+            'name' => 'Branding',
+            'line' => 'Logos and brand guides that hold up from a van door to a favicon.',
+            'detail' => 'Colours, type and rules you can hand to a printer or a signwriter.',
+        ],
+        [
+            'name' => 'Hosting',
+            'line' => 'Backups, security and small changes included.',
+            'detail' => 'One monthly fee. Need a price or a photo changed? Send an email.',
+        ],
+        [
+            'name' => 'Apps',
+            'line' => 'Booking tools, dashboards and mobile apps.',
+            'detail' => 'For when a website is not enough and a spreadsheet is starting to creak.',
+        ],
     ],
 
-    // First project is shown as the large feature; the rest go in the grid below.
-    // 'image' is a path under public/, e.g. 'images/work/print-vision.jpg'.
-    'projects' => [
-        ['client' => 'Print Vision', 'type' => 'Website · Logo · Hosting', 'url' => null, 'image' => 'images/work/print-vision.jpg'],
-        ['client' => 'Fran Jones Massage Therapist', 'type' => 'Website · Logo · Hosting', 'url' => null, 'image' => 'images/work/fran-jones.jpg'],
-        ['client' => 'Esk Vet Consultants', 'type' => 'Website · Hosting', 'url' => null, 'image' => 'images/work/esk-vet.jpg'],
+    'statement' => [
+        'words' => 'Your website should work as hard as you do.',
+        'lead' => 'Most small-business websites look like each other. Same template, same stock photos, same slow load on a phone. Yours should be the one people remember.',
+        'facts' => [
+            ['figure' => '1', 'label' => 'person from the first call to launch day'],
+            ['figure' => '<24h', 'label' => 'to reply to your email, every time'],
+            ['figure' => '0', 'label' => 'templates. Every site starts from a blank page'],
+        ],
     ],
 
     'process' => [
-        ['title' => 'Chat', 'blurb' => 'We talk about your business. You get a clear plan before anything starts.'],
-        ['title' => 'Design', 'blurb' => 'You see the design early and we shape it together until it\'s right.'],
-        ['title' => 'Build', 'blurb' => 'Built properly, tested on real phones, handed over with a quick how-to.'],
-        ['title' => 'Launch', 'blurb' => 'It goes live, and I keep it fast, safe and up to date afterwards.'],
+        ['step' => 'Chat', 'text' => 'A call or a coffee. You tell me about the business, I ask a lot of questions, and you get a clear quote and timeline.'],
+        ['step' => 'Design', 'text' => 'You see the key pages designed before anything is built. This is where changes happen, while they are quick to make.'],
+        ['step' => 'Build', 'text' => 'Hand-built, fast on phones, and set up so you can change text and photos yourself.'],
+        ['step' => 'Launch', 'text' => 'I put it live, connect your domain, and stay on for hosting, backups and small changes.'],
     ],
 
+    'about' => [
+        'heading' => 'One person, start to finish.',
+        'body' => [
+            'EMAX Digital is a one-person studio. The person you first speak to is the person who designs your site, builds it, and looks after it once it is live.',
+            'That keeps things quick and keeps the bill sensible. Nothing gets lost between an account manager and a developer, because there is no account manager.',
+        ],
+        'caption' => 'This is who answers your email.',
+    ],
 ];
