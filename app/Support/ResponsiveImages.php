@@ -16,7 +16,9 @@ use Intervention\Image\ImageManager;
  * An image at `projects/abc.jpg` gets `variants/projects/abc-960.avif` (and .webp, .jpg) on the
  * same disk, for every width in WIDTHS smaller than the original, plus the original width
  * (capped at the largest width). The result is described by a small "meta" array:
- *   ['width' => 1600, 'height' => 1000, 'widths' => [480, 640, 960, 1280, 1400, 1600]]
+ *   ['width' => 1600, 'height' => 1000, 'widths' => [480, ..., 1600], 'formats' => ['avif', 'webp', 'jpg']]
+ * Only formats this server's PHP can write are made (RunCloud's GD has WebP but no AVIF);
+ * JPEG is always made.
  */
 class ResponsiveImages
 {
@@ -24,6 +26,9 @@ class ResponsiveImages
     public const WIDTHS = [320, 480, 640, 960, 1280, 1400, 1600];
 
     public const FORMATS = ['avif', 'webp', 'jpg'];
+
+    /** Set in tests to pretend a format is unavailable. */
+    public static ?array $formatsOverride = null;
 
     /** Encoder quality per format (close to Astro/sharp's defaults). */
     private const QUALITY = ['avif' => 55, 'webp' => 80, 'jpg' => 80];
@@ -45,7 +50,7 @@ class ResponsiveImages
         $widths = self::targetWidths($width);
         foreach ($widths as $w) {
             $resized = (clone $source)->scaleDown(width: $w);
-            foreach (self::FORMATS as $format) {
+            foreach (self::formats() as $format) {
                 $file = self::variantPath($path, $w, $format);
                 $fs->makeDirectory(dirname($file));
                 $resized->encode(match ($format) {
@@ -56,7 +61,26 @@ class ResponsiveImages
             }
         }
 
-        return ['width' => $width, 'height' => $height, 'widths' => $widths];
+        return ['width' => $width, 'height' => $height, 'widths' => $widths, 'formats' => self::formats()];
+    }
+
+    /** Formats that can be written here, best first. */
+    public static function formats(): array
+    {
+        if (self::$formatsOverride !== null) {
+            return self::$formatsOverride;
+        }
+        if (self::imagick()) {
+            $can = fn ($f) => (bool) \Imagick::queryFormats(strtoupper($f));
+        } else {
+            $gd = function_exists('gd_info') ? gd_info() : [];
+            $can = fn ($f) => match ($f) {
+                'avif' => function_exists('imageavif') && ! empty($gd['AVIF Support']),
+                'webp' => function_exists('imagewebp') && ! empty($gd['WebP Support']),
+            };
+        }
+
+        return [...array_filter(['avif', 'webp'], $can), 'jpg'];
     }
 
     /** Meta for an image whose variants were made earlier (by looking at the disk). */
@@ -71,7 +95,10 @@ class ResponsiveImages
             fn ($w) => $fs->exists(self::variantPath($path, $w, 'jpg')),
         ));
 
-        return ['width' => $size[0], 'height' => $size[1], 'widths' => $widths];
+        $first = $widths[0] ?? null;
+        $formats = $first ? array_values(array_filter(self::FORMATS, fn ($f) => $fs->exists(self::variantPath($path, $first, $f)))) : [];
+
+        return ['width' => $size[0], 'height' => $size[1], 'widths' => $widths, 'formats' => $formats];
     }
 
     public static function deleteVariants(?string $path, string $disk = 'public'): void
@@ -114,10 +141,14 @@ class ResponsiveImages
         return array_values(array_unique($widths));
     }
 
+    /** Imagick is used when it can write AVIF; otherwise GD. */
+    private static function imagick(): bool
+    {
+        return extension_loaded('imagick') && \Imagick::queryFormats('AVIF');
+    }
+
     private static function manager(): ImageManager
     {
-        $imagick = extension_loaded('imagick') && \Imagick::queryFormats('AVIF');
-
-        return ImageManager::usingDriver($imagick ? ImagickDriver::class : GdDriver::class);
+        return ImageManager::usingDriver(self::imagick() ? ImagickDriver::class : GdDriver::class);
     }
 }

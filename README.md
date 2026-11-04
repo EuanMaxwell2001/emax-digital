@@ -18,21 +18,27 @@ Email goes to Mailpit locally: http://mail.test
 - New admin login: `php artisan make:filament-user`.
 
 ## Deploy (DigitalOcean droplet with RunCloud)
-1. Web app: PHP 8.4, public path `/public`. PHP extensions: gd (with AVIF and WebP) or imagick.
-   AVIF needs GD built with libavif or ImageMagick with AVIF; check `php -r 'var_dump(function_exists("imageavif"));'`.
-2. `.env`: `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://emaxdigital.co.uk`,
-   database, SMTP (`MAIL_*`), `MAIL_FROM_ADDRESS`, `CONTACT_TO`.
-3. Deploy script:
+Web app `~/webapps/emax-digital` on 178.62.53.110 (user `runcloud`), a git checkout of `main`.
+The server's default `php` is 8.2, so always call PHP 8.4 by its full path:
 
-       composer install --no-dev --optimize-autoloader
-       npm ci && npm run build            # or build locally and upload public/build
-       php artisan migrate --force
-       php artisan storage:link
-       php artisan optimize
-       php artisan filament:optimize
+    PHP=/RunCloud/Packages/php84rc/bin/php
+    cd ~/webapps/emax-digital
+    git pull
+    $PHP /usr/sbin/composer install --no-dev --optimize-autoloader
+    source ~/.nvm/nvm.sh && npm ci && npm run build      # Node 20.19 is fine
+    $PHP artisan migrate --force
+    $PHP artisan storage:link                            # already exists; harmless
+    $PHP artisan optimize
+    $PHP artisan filament:optimize
 
-4. First deploy only: `php artisan db:seed --force` (with `ADMIN_EMAIL=...`), or upload the local
-   database and `storage/app/public`.
-5. No queue worker or cron is needed: image sizes and emails run after the response is sent.
+First deploy only: `ADMIN_EMAIL=you@example.com $PHP artisan db:seed --force` seeds the three
+projects and prints an admin password. Re-running it resets those three projects.
+
+`.env` on the server: `MAIL_MAILER=log` means emails are only written to the log. For the contact
+form to email you, set real SMTP `MAIL_*` details. `CONTACT_TO` defaults to hello@emaxdigital.co.uk.
+
+Images: RunCloud's PHP (GD) writes WebP but not AVIF, so the site serves WebP and JPEG there and
+AVIF only where PHP supports it. No queue worker or cron is needed: image sizes and emails run
+after the response is sent.
 
 `/robots.txt` only allows indexing when `APP_ENV=production`, so a staging copy stays out of Google.

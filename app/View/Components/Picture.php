@@ -56,10 +56,13 @@ class Picture extends Component
         $set = fn (string $format) => collect($use)
             ->map(fn ($w) => $fs->url(ResponsiveImages::variantPath($src, $w, $format))." {$w}w")
             ->implode(', ');
-        $this->sources = [
-            ['type' => 'image/avif', 'srcset' => $set('avif')],
-            ['type' => 'image/webp', 'srcset' => $set('webp')],
-        ];
+        // Older meta has no 'formats': those were made with all three.
+        $formats = $meta['formats'] ?? ResponsiveImages::FORMATS;
+        foreach (['avif' => 'image/avif', 'webp' => 'image/webp'] as $format => $type) {
+            if (in_array($format, $formats, true)) {
+                $this->sources[] = ['type' => $type, 'srcset' => $set($format)];
+            }
+        }
         $this->fallbackSrcset = $set('jpg');
         $this->fallback = $fs->url(ResponsiveImages::variantPath($src, end($use), 'jpg'));
     }

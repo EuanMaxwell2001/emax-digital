@@ -24,7 +24,7 @@ A port of the finished Astro site in `../emax-new` (kept untouched as the refere
   `resources/css/contact-form.css`, `ContactController` (honeypot, 3 s time trap, rate limit
   `contact` in `AppServiceProvider`, emails `CONTACT_TO` after the response).
 - Images: `<x-picture>` (`app/View/Components/Picture.php`) writes the same `<picture>` markup as
-  Astro (AVIF, WebP, JPEG). Sizes are made by `App\Support\ResponsiveImages` into
+  Astro (AVIF where the server supports it, WebP, JPEG). Sizes are made by `App\Support\ResponsiveImages` into
   `variants/` on the same disk, after the response when an image is uploaded
   (`HasResponsiveImages` trait). `php artisan images:generate --projects [--missing]` / `--static`.
 - The About portrait and its sizes live in `public/images/` (committed).

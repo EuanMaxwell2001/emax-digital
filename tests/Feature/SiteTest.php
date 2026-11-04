@@ -181,6 +181,27 @@ class SiteTest extends TestCase
         Storage::disk('public')->assertMissing('variants/'.str_replace('.jpg', '-640.avif', $path));
     }
 
+    public function test_servers_without_avif_get_webp_and_jpeg_only(): void
+    {
+        Storage::fake('public');
+        \App\Support\ResponsiveImages::$formatsOverride = ['webp', 'jpg']; // like RunCloud's GD
+
+        try {
+            $path = UploadedFile::fake()->image('cover.jpg', 800, 500)->store('projects', 'public');
+            $project = $this->project(['cover_path' => $path]);
+            $this->app->terminate();
+
+            $this->assertSame(['webp', 'jpg'], $project->refresh()->cover_meta['formats']);
+            Storage::disk('public')->assertMissing('variants/'.str_replace('.jpg', '-640.avif', $path));
+            Storage::disk('public')->assertExists('variants/'.str_replace('.jpg', '-640.webp', $path));
+            $this->get('/work/print-vision')
+                ->assertDontSee('image/avif', false)
+                ->assertSee('type="image/webp"', false);
+        } finally {
+            \App\Support\ResponsiveImages::$formatsOverride = null;
+        }
+    }
+
     public function test_admin_requires_login(): void
     {
         $this->get('/admin')->assertRedirect('/admin/login');
